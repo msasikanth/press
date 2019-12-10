@@ -35,7 +35,7 @@ data class WysiwygStyle(
 
   /** "[Link title](https://domain.tld)" */
   data class Link(
-    val titleTextColor: Int,
+    val titleTextColor: Int,  // TODO: the title is something else. This should be "textColor".
     val urlTextColor: Int
   )
 
