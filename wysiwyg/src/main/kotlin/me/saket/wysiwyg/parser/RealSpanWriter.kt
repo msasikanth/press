@@ -1,27 +1,25 @@
 package me.saket.wysiwyg.parser
 
-import android.text.Spannable
-import android.text.SpannableString
 import android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
 import me.saket.wysiwyg.parser.node.HeadingLevel
 import me.saket.wysiwyg.spans.HeadingSpan
 import me.saket.wysiwyg.spans.WysiwygSpan
 import me.saket.wysiwyg.widgets.EditableText
 import me.saket.wysiwyg.widgets.NativeTextField
-import timber.log.Timber
 
-actual class SpanWriter actual constructor(private val textField: NativeTextField) {
+typealias LineNumber = Int
+
+actual class RealSpanWriter actual constructor(private val textField: NativeTextField): SpanWriter {
 
   private val spans = mutableListOf<Triple<Any, SpanStart, SpanEnd>>()
-
   private val newHeadings = mutableSetOf<Pair<LineNumber, HeadingLevel>>()
   private val lastHeadings = mutableSetOf<Pair<LineNumber, HeadingLevel>>()
 
-  actual fun add(span: WysiwygSpan, start: SpanStart, end: SpanEnd) {
+  override fun add(span: WysiwygSpan, start: SpanStart, end: SpanEnd) {
     spans.add(Triple(span, start, end))
   }
 
-  actual fun writeTo(text: EditableText) {
+  override fun writeTo(text: EditableText) {
     for ((span, start) in spans) {
       if (span is HeadingSpan) {
         newHeadings.add(textField.layout.getLineForOffset(start) to span.level)
@@ -52,7 +50,7 @@ actual class SpanWriter actual constructor(private val textField: NativeTextFiel
     }
   }
 
-  actual fun clear() {
+  override fun clear() {
     spans.clear()
   }
 }

@@ -1,6 +1,6 @@
 package me.saket.wysiwyg.parser.highlighters
 
-import me.saket.wysiwyg.parser.SpanWriter
+import me.saket.wysiwyg.parser.RealSpanWriter
 import me.saket.wysiwyg.parser.node.Node
 import me.saket.wysiwyg.parser.node.firstChild
 import me.saket.wysiwyg.parser.node.nextNode
@@ -13,7 +13,7 @@ object RootNodeHighlighter : NodeVisitor<Node> {
   override fun visit(
     node: Node,
     pool: SpanPool,
-    writer: SpanWriter
+    writer: RealSpanWriter
   ) {
     var child: Node? = node.firstChild
 
