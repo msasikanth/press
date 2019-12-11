@@ -43,6 +43,8 @@ kotlin {
         implementation deps.flexmark.strikethrough
         implementation deps.flexmark.autoLink
         implementation deps.timber
+        implementation deps.assertK.common
+        implementation deps.assertK.opentest4j  // https://youtrack.jetbrains.com/issue/IDEA-214533
       }
     }
     androidTest {
