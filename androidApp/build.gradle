@@ -70,6 +70,7 @@ dependencies {
   releaseImplementation deps.flipper.release.core
 
   testImplementation deps.junit
+  testImplementation deps.paparazzi
 
   androidTestImplementation deps.androidx.test.core
   androidTestImplementation deps.androidx.test.runner
